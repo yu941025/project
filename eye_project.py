@@ -149,7 +149,7 @@ def save_url(url):
         print('当前爬取url保存完成')
 
 if __name__=='__main__':
-    city=input('请输入：')
+    city=input('请输入城市：')
 
     end=''
     for url in eye_url.get_url(city):
