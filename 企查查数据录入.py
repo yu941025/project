@@ -1,3 +1,7 @@
+
+
+#这段代码是将excal表数据存入mysql.
+
 import xlrd
 import mysql.connector
 
@@ -141,4 +145,8 @@ def insert_by_qcc_xls(filename,by_once=False):
 
 create_sql_table()
 insert_by_qcc_xls(filename)
+
+
+
+
         
