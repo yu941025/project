@@ -42,21 +42,28 @@ def insert():
 def test():
     headers={'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
     url='https://www.baidu.com/'
-    resp=requests.get(url,headers=headers)
-    status=resp.status_code
+    sql='select * from proxies'
     conn=eye_connect.conn
     cursor=eye_connect.cursor
-    sql='select * from proxies'
     cursor.execute(sql)
     h=cursor.fetchall()
-    #print(h)
-    #print(len(h))
-    dict=[]
+    http=[]
     for i in h:
+        http.append(i[1]+':'+i[2])
+    dict=[]
+    for j in http:
+        proxiex={'http':j}
+        resp=requests.get(url,headers=headers,proxies=proxiex)
+        status=resp.status_code
+    #print(h)
+    #print(len(h))   
         if status==200:
             #print(i)
             dict.append(i[1]+':'+i[2])
+    
+
     return dict
 if __name__=='__main__':
     headers={'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'}
-    insert()
+    test()
+
